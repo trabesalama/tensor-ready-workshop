@@ -3,7 +3,7 @@ from src.document_processor import DocumentProcessor
 from src.embedding_manager import EmbeddingManager
 from src.vector_store import VectorStore
 from src.rag_system import RAGSystem
-from src.similarity_tester import SimilarityTester
+from tests.similarity_tester import SimilarityTester
 from src.prompt_manager import PromptManager
 
 def main():
