@@ -4,17 +4,32 @@ from typing import List, Dict, Any
 import uvicorn
 from pathlib import Path
 import sys
+import os
+
+# Add project root to path
+project_root = Path(__file__).parent.parent.parent
+sys.path.append(str(project_root))
+sys.path.append(str(project_root / "Module1-project"))
+
+# Now import the modules
+from Module1_project.src.rag_system import RAGSystem
+from Module1_project.src.config_loader import ConfigLoader
+from Module1_project.src.vector_store import VectorStore
+from Module1_project.src.embedding_manager import EmbeddingManager
+from Module1_project.src.prompt_manager import PromptManager
+from Module1_project.tests.similarity_tester import SimilarityTester
+# ...existing code...
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent / "src"))
-
-from src.rag_system import RAGSystem
-from src.config_loader import ConfigLoader
-from src.vector_store import VectorStore
-from src.embedding_manager import EmbeddingManager
-from src.prompt_manager import PromptManager
-from tests.similarity_tester import SimilarityTester
-from api.schemas import (
+from Module1_project.src.prompt_manager import PromptManager
+# from src.rag_system import RAGSystem
+# from src.config_loader import ConfigLoader
+# from src.vector_store import VectorStore
+# from src.embedding_manager import EmbeddingManager
+# from src.prompt_manager import PromptManager
+# from tests.similarity_tester import SimilarityTester
+from Module1_project.api.schemas import (
     QueryRequest, QueryResponse, SimilarityRequest, SimilarityResponse,
     EvaluationRequest, EvaluationResponse, PromptListResponse,
     PromptSetRequest, HealthResponse
@@ -47,7 +62,7 @@ similarity_tester = SimilarityTester(embedding_manager, vector_store)
 async def startup_event():
     """Initialize the system on startup."""
     # Load and process documents
-    from src.document_processor import DocumentProcessor
+    from Module1_project.src.document_processor import DocumentProcessor
     doc_processor = DocumentProcessor(config_loader.data_directory)
     
     documents = doc_processor.load_documents()
@@ -99,7 +114,7 @@ async def query_rag(request: QueryRequest):
 async def test_similarity(request: SimilarityRequest):
     """Test similarity search."""
     try:
-        results = similarity_tester.test_query_similarity(request.query, request.k)
+        results = similarity_tester.test_query_similarity(request.query, request.k if request.k is not None else 5)
         formatted_results = [
             {
                 "page": doc.metadata.get('page'),
@@ -123,8 +138,8 @@ async def evaluate_retrieval(request: EvaluationRequest):
         evaluation = similarity_tester.evaluate_retrieval(
             request.query,
             request.expected_pages,
-            request.threshold,
-            request.top_k
+            request.threshold if request.threshold is not None else 0.5,
+            request.top_k if request.top_k is not None else 5
         )
         
         return EvaluationResponse(

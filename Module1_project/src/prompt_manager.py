@@ -6,7 +6,7 @@ from pathlib import Path
 class PromptManager:
     """Manages dynamic loading and switching of system prompts."""
     
-    def __init__(self, prompts_dir: str = "./Module1-project/prompts"):
+    def __init__(self, prompts_dir: str = "./Module1_project/prompts"):
         self.prompts_dir = Path(prompts_dir)
         self._prompts: Dict[str, str] = {}
         self._current_prompt: Optional[str] = None
