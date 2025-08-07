@@ -1,15 +1,13 @@
 # Customs Code RAG System
 
-A professional system for interpreting Malagasy customs codes using Retrieval-Augmented Generation (RAG) architecture with FastAPI backend and Streamlit frontend.
+AI System for interpreting Malagasy customs codes using Retrieval-Augmented Generation (RAG) architecture with FastAPI backend and Streamlit frontend.
 
 ## Features
 
 - Dynamic prompt management
 - Similarity search testing
-- Retrieval evaluation metrics
 - FastAPI backend with REST API
 - Interactive Streamlit frontend
-- Modular architecture
 
 ## Installation
 

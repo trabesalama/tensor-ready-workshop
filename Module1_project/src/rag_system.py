@@ -65,6 +65,7 @@ class RAGSystem:
     
     def query(self, question: str, prompt_name: Optional[str] = None) -> str:
         """Query the RAG system with a question and optional prompt."""
+        # Change prompt if specified
         if prompt_name and prompt_name != self.prompt_manager.current_prompt_name:
             self.prompt_manager.set_prompt(prompt_name)
             self._rag_chain = None  # Force recreation of the chain
@@ -81,7 +82,3 @@ class RAGSystem:
             response += f"\n\n**Sources consulted**: Page {', '.join(map(str, unique_pages))}"
         
         return response
-    
-    def get_relevant_documents(self, question: str, k: int = 5) -> list:
-        """Get relevant documents for a question without generation."""
-        return self.vector_store.similarity_search(question, k=k)

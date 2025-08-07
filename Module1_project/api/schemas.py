@@ -4,12 +4,15 @@ from typing import List, Optional, Dict, Any
 class QueryRequest(BaseModel):
     question: str = Field(..., description="Question to ask the RAG system")
     prompt_name: Optional[str] = Field(None, description="Name of the prompt to use")
+    prompt_technique: Optional[str] = Field(None, description="Prompting technique (standard, cot, react, self_ask)")
+    session_id: Optional[str] = Field(None, description="User session ID")
     k: Optional[int] = Field(5, description="Number of documents to retrieve")
 
 class QueryResponse(BaseModel):
     answer: str = Field(..., description="Generated answer")
     sources: List[int] = Field(..., description="Page numbers of source documents")
     prompt_used: str = Field(..., description="Name of the prompt used")
+    session_id: str = Field(..., description="User session ID")
 
 class SimilarityRequest(BaseModel):
     query: str = Field(..., description="Query to test similarity")
@@ -43,3 +46,15 @@ class HealthResponse(BaseModel):
     status: str = Field(..., description="Health status")
     version: str = Field(..., description="API version")
     components: Dict[str, str] = Field(..., description="Component statuses")
+
+class SessionCreateRequest(BaseModel):
+    user_id: Optional[str] = Field(None, description="User identifier")
+
+class SessionCreateResponse(BaseModel):
+    session_id: str = Field(..., description="New session ID")
+    message: str = Field(..., description="Confirmation message")
+
+class SessionHistoryResponse(BaseModel):
+    session_id: str = Field(..., description="Session ID")
+    history: List[Dict[str, Any]] = Field(..., description="Conversation history")
+

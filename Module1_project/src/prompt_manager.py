@@ -6,7 +6,7 @@ from pathlib import Path
 class PromptManager:
     """Manages dynamic loading and switching of system prompts."""
     
-    def __init__(self, prompts_dir: str = "./Module1_project/prompts"):
+    def __init__(self, prompts_dir: str = "Module1_project/prompts"):
         self.prompts_dir = Path(prompts_dir)
         self._prompts: Dict[str, str] = {}
         self._current_prompt: Optional[str] = None
@@ -35,10 +35,8 @@ class PromptManager:
         return list(self._prompts.keys())
     
     @property
-    def current_prompt_name(self) -> str:
+    def current_prompt_name(self) -> Optional[str]:
         """Return the name of the current prompt."""
-        if self._current_prompt is None:
-            raise ValueError("No current prompt is set.")
         return self._current_prompt
     
     def get_prompt(self, prompt_name: Optional[str] = None) -> str:
