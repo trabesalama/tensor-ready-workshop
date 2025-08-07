@@ -1,0 +1,9 @@
+# src/__init__.py
+"""
+Customs Code RAG System
+A professional system for interpreting Malagasy customs codes using RAG architecture.
+"""
+
+__version__ = "1.0.0"
+__author__ = "rabesalama tahina"
+__email__ = "t.rabesalama@gmail.com"
