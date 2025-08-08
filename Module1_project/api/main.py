@@ -229,7 +229,7 @@ async def list_prompts():
     """List available prompts."""
     return PromptListResponse(
         available_prompts=prompt_manager.available_prompts,
-        current_prompt=prompt_manager.current_prompt_name
+        current_prompt=prompt_manager.current_prompt_name or "default"
     )
 
 @app.post("/prompts/set")
