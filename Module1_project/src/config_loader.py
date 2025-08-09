@@ -1,7 +1,7 @@
 import yaml
 from typing import Dict, Any
 from pathlib import Path
-from Module1_project.paths import CONFIG_DIR
+from app.paths import CONFIG_DIR
 
 
 class ConfigLoader:

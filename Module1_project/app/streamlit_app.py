@@ -260,7 +260,7 @@ from datetime import datetime
 
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent / "src"))
-from  Module1_project.paths import DATA_DIR
+from  Module1_project.app.paths import DATA_DIR
 
 # API configuration
 API_URL = "http://127.0.0.1:8000"  # Utiliser 127.0.0.1 au lieu de localhost
