@@ -1,12 +1,11 @@
-import os
 import yaml
-from typing import Dict, Any, Optional
+from typing import Dict, Optional
 from pathlib import Path
 
 class PromptManager:
     """Manages dynamic loading and switching of system prompts."""
     
-    def __init__(self, prompts_dir: str = "Module1_project/prompts"):
+    def __init__(self, prompts_dir: str = "prompts"):
         self.prompts_dir = Path(prompts_dir)
         self._prompts: Dict[str, str] = {}
         self._current_prompt: Optional[str] = None

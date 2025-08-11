@@ -150,11 +150,11 @@ async def query_rag(request: QueryRequest):
         
         # Combine prompt name and technique
         prompt_name = request.prompt_name
-        if request.prompt_technique and request.prompt_technique != "standard":
-            if prompt_name:
-                prompt_name = f"{prompt_name}_{request.prompt_technique}"
-            else:
-                prompt_name = request.prompt_technique
+        # if request.prompt_technique and request.prompt_technique != "standard":
+        #     if prompt_name:
+        #         prompt_name = f"{prompt_name}_{request.prompt_technique}"
+        #     else:
+        #         prompt_name = request.prompt_technique
         
         # Get answer from RAG system
         answer = rag_system.query(request.question, prompt_name)

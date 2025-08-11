@@ -8,6 +8,10 @@ from pydantic import SecretStr
 from dotenv import load_dotenv
 from .prompt_manager import PromptManager
 
+
+
+
+
 class RAGSystem:
     """Manages the RAG (Retrieval-Augmented Generation) system."""
     
@@ -70,7 +74,7 @@ class RAGSystem:
             self.prompt_manager.set_prompt(prompt_name)
             self._rag_chain = None  # Force recreation of the chain
         
-        response = self.rag_chain.invoke(question)
+        response = self.prompt_manager.get_prompt()  + " \n" + self.rag_chain.invoke(question)
         
         # Add consulted sources
         retriever = self.vector_store.get_retriever()
