@@ -9,28 +9,29 @@ import uuid
 from datetime import datetime
 
 # Add project root to path
-project_root = Path(__file__).parent.parent.parent
-sys.path.append(str(project_root))
-sys.path.append(str(project_root / "Module1-project"))
+# project_root = Path(__file__).parent.parent.parent
+# sys.path.append(str(project_root))
+# sys.path.append(str(project_root / "Module1_project"))
+# sys.path.append(str(Path(__file__).parent.parent / "src"))
 
 # Now import the modules
-from Module1_project.src.rag_system import RAGSystem
-from Module1_project.src.config_loader import ConfigLoader
-from Module1_project.src.vector_store import VectorStore
-from Module1_project.src.embedding_manager import EmbeddingManager
-from Module1_project.src.prompt_manager import PromptManager
-from Module1_project.tests.similarity_tester import SimilarityTester
+from src.rag_system import RAGSystem
+from src.config_loader import ConfigLoader
+from src.vector_store import VectorStore
+from src.embedding_manager import EmbeddingManager
+from src.prompt_manager import PromptManager
+from tests.similarity_tester import SimilarityTester
 # ...existing code...
 
 # Add src to path
-sys.path.append(str(Path(__file__).parent.parent / "src"))
-from Module1_project.src.prompt_manager import PromptManager
+# sys.path.append(str(Path(__file__).parent.parent / "src"))
+from src.prompt_manager import PromptManager
 # from Module1_project.api.schemas import (
 #     QueryRequest, QueryResponse, SimilarityRequest, SimilarityResponse,
 #     EvaluationRequest, EvaluationResponse, PromptListResponse,
 #     PromptSetRequest, HealthResponse
 # )
-from Module1_project.api.schemas import (
+from api.schemas import (
     QueryRequest, QueryResponse, SimilarityRequest, SimilarityResponse,
     EvaluationRequest, EvaluationResponse, PromptListResponse,
     PromptSetRequest, HealthResponse, SessionCreateRequest, 
