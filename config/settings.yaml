@@ -1,0 +1,23 @@
+model:
+  name: "openai/gpt-oss-120b"
+  temperature: 0.1
+
+chunking:
+  chunk_size: 700
+  chunk_overlap: 200
+
+chroma:
+  collection_name: "douanes_mg_2025"
+  persist_directory: "./chroma_db"
+
+embedding:
+  model_name: "dangvantuan/sentence-camembert-base"
+  model_kwargs:
+    device: "cpu"
+
+retrieval:
+  search_kwargs:
+    k: 10
+    score_threshold: 0.7
+
+data_directory: "./data"
